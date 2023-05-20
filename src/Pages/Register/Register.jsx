@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Register = () => {
+    const {registerUser, updateUserProfile} = useContext(AuthContext)
     const handleSignUp = event =>{
         event.preventDefault();
         const form = event.target;
@@ -10,6 +12,26 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(name,photo,email,password)
+        registerUser(email,password)
+        .then(result =>{
+            console.log(result.user)
+            updateProfeleData(result.user,name,photo)
+        })
+        .catch(error =>{
+            console.log(error.message);
+        })
+
+        const updateProfeleData=(user,name, photo)=>{
+            updateUserProfile(user,name,photo)
+            .then(()=>{
+                
+            })
+            .catch(error =>{
+                console.log(error.message)
+            })
+        }
+        
+
     }
     return (
         <div className=" min-h-screen bg-base-200">

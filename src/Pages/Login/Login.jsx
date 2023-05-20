@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
+    const {loginUser,loginWithGoogle,user} = useContext(AuthContext)
     const handleLogin = event =>{
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+        loginUser(email,password)
+        .then(result =>{
+            console.log(result.user)
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+    }
+
+    const handleGoogleLogin =()=>{
+        loginWithGoogle()
+        .then(result =>{
+            console.log(result.user)
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
     }
     return (
         
@@ -35,7 +55,10 @@ const Login = () => {
                                 <input type="submit" value="Login" className="btn btn-primary"/>
                             </div>
                             </form>
-                            <p>Don't have an account? <LinK className='text-blue-600' to='/register'>Sign Up</LinK></p>
+                           <div className='text-center space-y-5 mt-6'>
+                           <p>Sign In with <button onClick={handleGoogleLogin} className='btn btn-outline btn-warning'>Google</button></p>
+                            <p>Don't have an account? <Link className='text-blue-600' to='/register'>Sign Up</Link></p>
+                           </div>
                         </div>
                     </div>
                 </div>

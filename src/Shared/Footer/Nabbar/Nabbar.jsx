@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Provider/AuthProvider';
+import { Tooltip } from 'react-tooltip';
 
 const Nabbar = () => {
+    const {user,logOut} = useContext(AuthContext);
+
+    const handleLogOut = ()=>{
+        logOut()
+        .then(()=>{})
+        .catch(error =>{
+            console.log(error.message)
+        })
+    }
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/addtoy'>Add A Toy</Link></li>
@@ -26,7 +37,20 @@ const Nabbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-            <button className="btn btn-error bg-[#FF6799] text-white font-bold"><Link to='/login'>Login</Link></button>
+                {
+                    user?<div className='flex items-center gap-4'>
+                    <img
+                      style={{ height: '40px', width: '40px' }}
+                      className='rounded-full border border-dark'
+                      src={user.photoURL}
+                      data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName}
+                     alt="" />
+                     <Tooltip id="my-tooltip" />
+                     
+                    <Link onClick={handleLogOut} className='text-decoration-none text-dark '>Log Out</Link>
+                  </div> : <button className="btn btn-error bg-[#FF6799] text-white font-bold"><Link to='/login'>Login</Link>{console.log(user)}</button>
+                }
+           
             </div>
         </div>
     );
