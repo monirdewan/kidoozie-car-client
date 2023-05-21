@@ -44,7 +44,7 @@ const CategoryCard = ({product}) => {
             <figure><img src={pictureURL} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
-                <p>${price}</p>
+                <p>Price: ${price}</p>
                 <span className='flex'><p>Rating: {product.rating}</p><Rating style={{ maxWidth: 150 }} value={pRating}    itemStyles={myStyles} /></span>
                 <div className="card-actions ">
                    

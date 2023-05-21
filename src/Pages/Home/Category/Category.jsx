@@ -24,7 +24,7 @@ const Category = () => {
             <button onClick={()=>handleTabClick("dump-truck")} className={`border p-4 rounded-md border-red-500 ${activeTab == "dump-truck"?" bg-[#FF6799] text-white":""}`}>Dump Truck</button>
             <button onClick={()=>handleTabClick("police-car")} className={`border p-4 rounded-md border-red-500 ${activeTab == "police-car"?" bg-[#FF6799] text-white":""}`}>Police car</button>
         </div>
-        <div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             {
                 products.map(product => <CategoryCard key={product._id} product={product}></CategoryCard>)
             }
