@@ -15,8 +15,14 @@ const Nabbar = () => {
     }
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
+        <li><Link to='/addtoy'>All Toys</Link></li>
+       {
+        user && <>
+         <li><Link to='/mytoy'>My Toys</Link></li>
         <li><Link to='/addtoy'>Add A Toy</Link></li>
-        <li><Link to='/about'>About</Link></li>
+        </>
+       }
+        <li><Link to='/about'>Blogs</Link></li>
     </>
     return (
         <div className="navbar bg-base-100">
@@ -38,12 +44,13 @@ const Nabbar = () => {
             </div>
             <div className="navbar-end">
                 {
+                    
                     user?<div className='flex items-center gap-4'>
                     <img
                       style={{ height: '40px', width: '40px' }}
                       className='rounded-full border border-dark'
-                      src={user.photoURL}
-                      data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName}
+                      src={user?.photoURL}
+                      data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName}
                      alt="" />
                      <Tooltip id="my-tooltip" />
                      

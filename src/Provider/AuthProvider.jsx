@@ -15,6 +15,7 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const updateUserProfile =(user,name, photoUrl)=>{
+        setLoading(true)
         return updateProfile(user,{
             displayName:name,
             photoURL:photoUrl

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const AddToy = () => {
+  const {user} = useContext(AuthContext);
   const handleAddToy = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -41,13 +43,13 @@ const AddToy = () => {
                   <label className="label">
                     <span className="font-semibold">Name</span>
                   </label>
-                  <input type="text" name='name' placeholder="Name" className="input input-bordered" />
+                  <input type="text" name='name'  placeholder="Name" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="font-semibold">Seller Name</span>
                   </label>
-                  <input type="text" name='sellerName' placeholder="Seller Name" className="input input-bordered" />
+                  <input type="text" name='sellerName' defaultValue={user?.displayName} placeholder="Seller Name" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -59,7 +61,7 @@ const AddToy = () => {
                   <label className="label">
                     <span className="font-semibold">Seller Email</span>
                   </label>
-                  <input type="text" name='sellerEmail' placeholder="Seller Email" className="input input-bordered" />
+                  <input type="text" name='sellerEmail' defaultValue={user?.email} placeholder="Seller Email" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                   <label className="label">
