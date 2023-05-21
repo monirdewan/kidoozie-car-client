@@ -6,7 +6,7 @@ const AllToys = () => {
    
     const [toys, setToys] = useState(null)
    useEffect(()=>{
-    fetch('http://localhost:5000/products')
+    fetch('https://kidoozie-car-server.vercel.app/products')
     .then(res => res.json())
     .then(data =>{
         setToys(data)
@@ -40,7 +40,7 @@ const AllToys = () => {
                                     <td>{toy.subCategory}</td>
                                     <td>$ {toy.price}</td>
                                     <td>{toy.quantity}</td>
-                                    <td><Link  to='/login' className="btn btn-error bg-[#FF6799] text-white font-bold">View Details</Link></td>
+                                    <td><Link  to={`/productDetails/${toy._id}`} className="btn btn-error bg-[#FF6799] text-white font-bold">View Details</Link></td>
                                     </tr>
                                 )
                             }

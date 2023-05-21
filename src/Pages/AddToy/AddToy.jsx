@@ -18,7 +18,7 @@ const AddToy = () => {
     const addToycar = { name, sName, pictureURL, sEmail, subCategory, price, rating, quantity, description };
     console.log(addToycar)
     //send data to server
-    fetch('http://localhost:5000/add-toy', {
+    fetch('https://kidoozie-car-server.vercel.app/add-toy', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

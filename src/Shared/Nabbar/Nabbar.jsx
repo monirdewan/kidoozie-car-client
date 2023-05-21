@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { Tooltip } from 'react-tooltip';
+import logo from '../../assets/logo.png'
 
 const Nabbar = () => {
     const {user,logOut} = useContext(AuthContext);
@@ -35,7 +36,7 @@ const Nabbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-xl"><img src="logo.png" alt="" /></Link>
+                <Link to='/' className="btn btn-ghost normal-case text-xl"><img src={logo} alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

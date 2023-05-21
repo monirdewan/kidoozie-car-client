@@ -1,10 +1,11 @@
 import React from 'react';
+import logo from './../../assets/logo.png'
 
 const Footer = () => {
     return (
         <footer className="footer p-10 bg-base-200 text-base-content">
         <div>
-          <img src="logo.png" alt="" />
+          <img src={logo} alt="" />
           <p>Kidoozie Car Store.<br/>A kids toy shop is a store that specializes in <br/>selling toys and car designed specifically for children.</p>
         </div> 
         <div>

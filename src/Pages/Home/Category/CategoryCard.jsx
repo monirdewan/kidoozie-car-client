@@ -3,7 +3,7 @@ import { Rating, Star } from '@smastrom/react-rating'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const myStyles = {
     itemShapes: Star,
@@ -35,11 +35,10 @@ const CategoryCard = ({product}) => {
                     icon: 'warning',
                     title: 'Without a login, you can not visit the single toy details page'
                   })
-                  navigate('/login')
             }
         
     }
-    console.log(typeof pRating)
+   
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl mx-auto m-12">
             <figure><img src={pictureURL} alt="Shoes" /></figure>
@@ -49,7 +48,7 @@ const CategoryCard = ({product}) => {
                 <span className='flex'><p>Rating: {product.rating}</p><Rating style={{ maxWidth: 150 }} value={pRating}    itemStyles={myStyles} /></span>
                 <div className="card-actions ">
                    
-                    <button onClick={notLogin}   className="border py-3 hover:bg-[#16b6f5] hover:text-white px-5 rounded-md font-bold border-[#2FBDF3]">View Details</button>
+                    <button onClick={notLogin}   className="border py-3 hover:bg-[#16b6f5] hover:text-white px-5 rounded-md font-bold border-[#2FBDF3]"><Link to={`/productDetails/${_id}`}>View Details</Link></button>
                 </div>
             </div>
         </div>
