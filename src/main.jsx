@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import 'react-tooltip/dist/react-tooltip.css'
+import '@smastrom/react-rating/style.css'
 import './index.css'
 import {
   RouterProvider,
