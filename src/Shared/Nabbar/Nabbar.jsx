@@ -55,7 +55,7 @@ const Nabbar = () => {
                      <Tooltip id="my-tooltip" />
                      
                     <Link onClick={handleLogOut} className='text-decoration-none text-dark '>Log Out</Link>
-                  </div> : <button className="btn btn-error bg-[#FF6799] text-white font-bold"><Link to='/login'>Login</Link>{console.log(user)}</button>
+                  </div> : <button className="btn btn-error bg-[#FF6799] text-white font-bold"><Link to='/login'>Login</Link></button>
                 }
            
             </div>
