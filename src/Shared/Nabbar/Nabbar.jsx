@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../Provider/AuthProvider';
+import { AuthContext } from '../../Provider/AuthProvider';
 import { Tooltip } from 'react-tooltip';
 
 const Nabbar = () => {
@@ -15,7 +15,7 @@ const Nabbar = () => {
     }
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/addtoy'>All Toys</Link></li>
+        <li><Link to='/alltoys'>All Toys</Link></li>
        {
         user && <>
          <li><Link to='/mytoy'>My Toys</Link></li>
