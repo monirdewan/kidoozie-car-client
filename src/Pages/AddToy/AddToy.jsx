@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const AddToy = () => {
   const {user} = useContext(AuthContext);
@@ -28,6 +29,25 @@ const AddToy = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data)
+        if(data.insertedId){
+          const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 5000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            
+            Toast.fire({
+              icon: 'success',
+              title: 'Your Toy Added Susseccfully'
+            })
+      }
+      form.reset();
       })
 
   }

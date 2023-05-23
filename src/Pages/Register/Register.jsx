@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const Register = () => {
     const {registerUser, updateUserProfile} = useContext(AuthContext)
-    const navigate = useNavigate()
+    const [error, setError] = useState("")
+    const navigate = useNavigate("")
     const handleSignUp = event =>{
         event.preventDefault();
         const form = event.target;
@@ -12,15 +14,47 @@ const Register = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
+        if(!/(?=.{6,})/.test(password)){
+            setError('Your password should be 6 characters')
+            return;
+        }else if(!/(?=.*[a-zA-Z])/.test(password)){
+            setError('You should enter letter small and capital')
+            return;
+        }else if(!/(?=.*\d)/.test(password)){
+            setError('You should enter some digits')
+            return;
+        }else if(!/(?=.*[!@#$%&? "])/.test(password)){
+            setError('You Should  enter a Special characters')
+            return;
+        }
+        setError('')
         console.log(name,photo,email,password)
         registerUser(email,password)
         .then(result =>{
             console.log(result.user)
             updateProfeleData(result.user,name,photo)
+            if(result.user){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Your Account Created Successfully'
+                  })
+            }
             navigate('/')
         })
         .catch(error =>{
-            console.log(error.message);
+            setError(error.message);
         })
 
         const updateProfeleData=(user,name, photo)=>{
@@ -29,7 +63,7 @@ const Register = () => {
                 
             })
             .catch(error =>{
-                console.log(error.message)
+                setError(error.message)
             })
         }
         
@@ -45,19 +79,19 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='name' placeholder="Name" className="input input-bordered" />
+                                <input type="text" required name='name' placeholder="Name" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="text" name='photo' placeholder="Photo Url" className="input input-bordered" />
+                                <input type="text" required name='photo' placeholder="Photo Url" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="text" name='email' placeholder="email" className="input input-bordered" />
+                                <input type="text" required name='email' placeholder="email" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -65,7 +99,7 @@ const Register = () => {
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered" />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <p className='text-error'>{error}</p>
                                 </label>
                             </div>
                             <div className="form-control mt-6">

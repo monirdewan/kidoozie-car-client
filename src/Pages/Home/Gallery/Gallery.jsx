@@ -18,7 +18,7 @@ const Gallery = () => {
             <p>Our Top Picks For Toys</p>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12'>
-            {shortToys.map(toy => <div className='h-80 bg-base-100 shadow-xl'><img  className='h-72 rounded-xl mx-auto  py-4 px-8' src={toy.pictureURL} alt="" /></div>)}
+            {shortToys.map(toy => <div key={toy._id} className='h-80 bg-base-100 shadow-xl'><img  className='h-72 rounded-xl mx-auto  py-4 px-8' src={toy.pictureURL} alt="" /></div>)}
             </div>
         </div>
         

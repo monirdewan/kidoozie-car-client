@@ -1,14 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const Login = () => {
     const {loginUser,loginWithGoogle,user} = useContext(AuthContext)
 
     const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || '/'
+  const from = location.state?.from?.pathname || '/';
+  const [error, seterror] = useState('')
+
+  const successTost =user =>{
+    if(user){
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Your Account Login Susseccfull'
+          })
+    }
+  }
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -19,10 +42,11 @@ const Login = () => {
         loginUser(email,password)
         .then(result =>{
             console.log(result.user)
+            successTost(result.user)
             navigate(from, {replace:true})
         })
         .catch(error =>{
-            console.log(error.message)
+            seterror(error.message)
         })
     }
 
@@ -30,9 +54,12 @@ const Login = () => {
         loginWithGoogle()
         .then(result =>{
             console.log(result.user)
+            successTost(result.user)
+            navigate(from, {replace:true})
         })
         .catch(error =>{
-            console.log(error.message)
+           seterror(error.message)
+            
         })
     }
     return (
@@ -54,7 +81,7 @@ const Login = () => {
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered" />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <p className='text-error'>{error}</p>
                                 </label>
                             </div>
                             <div className="form-control mt-6">

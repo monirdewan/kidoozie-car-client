@@ -23,7 +23,7 @@ const Nabbar = () => {
         <li><Link to='/addtoy'>Add A Toy</Link></li>
         </>
        }
-        <li><Link to='/about'>Blogs</Link></li>
+        <li><Link to='/blogs'>Blogs</Link></li>
     </>
     return (
         <div className="navbar bg-base-100">

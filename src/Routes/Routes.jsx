@@ -9,6 +9,7 @@ import AllToys from "../Pages/AllToys/AllToys";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import MyToys from "../Pages/MyToys/MyToys";
 import UpdateProduct from "../Pages/UpdateProduct/UpdateProduct";
+import Blogs from "../Pages/Blogs/Blogs";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
           path:'updateProduct/:id',
           element:<UpdateProduct></UpdateProduct>,
           loader: ({params}) => fetch(`https://kidoozie-car-server.vercel.app/update/${params.id}`)
+        },
+        {
+          path:'blogs',
+          element:<Blogs></Blogs>
         },
         {
           path:'login',
