@@ -25,7 +25,7 @@ const ProductDetails = () => {
     return (
         <div className='w-full my-24'>
             <h2 className='text-4xl font-bold text-center text-[#2FBDF3] mb-24'>This is Product Details</h2>
-            <div className='w-full md:flex justify-center items-center md:space-x-10'>
+            <div className='w-full grid grid-cols-1 md:grid-cols-2 justify-center items-center md:space-x-10'>
                 <div><img src={pictureURL} alt="" /></div>
                 <div className='md:space-y-2'>
                     <h4 className='text-2xl mb-4'><span className='font-semibold'>Toy Name</span>: {name}</h4>
