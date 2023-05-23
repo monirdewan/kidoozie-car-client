@@ -40,12 +40,12 @@ const CategoryCard = ({product}) => {
     }
    
     return (
-        <div className="card card-compact w-96 bg-base-100 shadow-xl mx-auto m-12">
-            <figure><img src={pictureURL} alt="Shoes" /></figure>
+        <div className="card card-compact w-full sm:1/2 lg:w-96 bg-base-100 shadow-xl mx-auto m-12">
+            <figure><img className='h-72' src={pictureURL} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
-                <p>Price: ${price}</p>
-                <span className='flex'><p>Rating: {product.rating}</p><Rating style={{ maxWidth: 150 }} value={pRating}    itemStyles={myStyles} /></span>
+                <p className='font-semibold'>Price: ${price}</p>
+                <span className='flex'><p className='font-semibold'>Rating: {product.rating}</p><Rating style={{ maxWidth: 150 }} value={pRating}    itemStyles={myStyles} /></span>
                 <div className="card-actions ">
                    
                     <button onClick={notLogin}   className="border py-3 hover:bg-[#16b6f5] hover:text-white px-5 rounded-md font-bold border-[#2FBDF3]"><Link to={`/productDetails/${_id}`}>View Details</Link></button>
